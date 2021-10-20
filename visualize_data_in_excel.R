@@ -14,3 +14,7 @@ excel_visualize <- function(.data){
   file.show(tmp)
   invisible(.data) # to continue piping
 }
+
+library(dplyr)
+mtcars %>% excel_visualize()
+mtcars %>% excel_visualize() %>% count(cyl)
