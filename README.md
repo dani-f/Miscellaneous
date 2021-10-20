@@ -1,5 +1,5 @@
 # Miscellaneous
-A collection of little helper and fun functions in R - have fun!
+A collection of little helper and fun functions and scripts in R - have fun!
 
 ## Overview
 
