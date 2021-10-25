@@ -2,7 +2,7 @@
 #
 # Birthday progress bar
 # A progress bar to show how much is left till your next birthday
-# Adaptable to show whatever deadline you want to track
+# Adaptable to show progress for any yearly deadline you want to track
 #
 # Initial idea and code based on publications in this great repository:
 # https://github.com/tomaztk/Useless_R_functions
