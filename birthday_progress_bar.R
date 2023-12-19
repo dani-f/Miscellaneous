@@ -13,8 +13,8 @@ library(dplyr)
 library(scales)
 
 # Choose name and birthday
-name <- "Christiano Ronaldo"
-birth_date <- as.Date("1985-02-05")
+name <- "Taylor Swift"
+birth_date <- as.Date("1989-12-13")
 
 today <- Sys.Date()
 current_year <- format(today, format = "%Y")
