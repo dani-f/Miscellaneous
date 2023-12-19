@@ -61,8 +61,8 @@ my_football_teams <- function(my_team){
     html_elements(".kick__v100-gameCell__team__name, .kick__v100-scoreBoard__dateHolder") %>%
     html_text(trim = TRUE)
   
-  # Replace German with the English abbreviation of the day
-  # Create vectors with days of week in both languages
+  # Replace German with English abbreviation of the weekday
+  # Create vectors with weekdays in both languages
   de <- paste0(wday(Sys.Date() + 0:6, label = TRUE, locale = "de_DE.UTF-8"), ".")
   en <- wday(Sys.Date() + 0:6, label = TRUE, locale = "English_United States.1252")
   
@@ -82,7 +82,6 @@ my_football_teams <- function(my_team){
     # Test if match hour is already scheduled
     if(str_detect(matches_future_raw[j + 2], "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
       # if so, do this
-      # replace the German with the English abbreviation of the day
       matches_future[l] <- 
         paste0(matches_future_raw[j],
                " - ",
@@ -90,11 +89,10 @@ my_football_teams <- function(my_team){
                ", ",
                matches_future_raw[j + 1],
                " at ",
-               # if the weekday is written in German, replace it with English abbreviation
                matches_future_raw[j + 2],
                "h")
     } else {
-      # if not, do this  
+      # if match hour is not scheduled, do this  
       matches_future[l] <- 
         paste0(matches_future_raw[j],
                " - ",
@@ -117,11 +115,9 @@ my_football_teams <- function(my_team){
       sep = "\n")
 }
 
-# Use the function and make sure the team is written as Kicker writes it in the url
-
+# Enjoy the function and make sure the team is written as Kicker writes it in its url
 
 # Examples ----------------------------------------------------------------
-
 # my_football_teams("1-fc-kaiserslautern")
 # my_football_teams("fc-red-star")
-# my_football_teams("sv-lichtenberg-47")
+# my_football_teams("deportivo-la-coruna")
