@@ -92,32 +92,32 @@ my_football_teams <- function(my_team){
       # Prepare next iteration
       j <- j + 4
     } else
-    # Test if match hour is already scheduled (but not today)
-    if(str_detect(matches_future_raw[j + 2], "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
-      # if so, do this
-      matches_future[l] <- 
-        paste0(matches_future_raw[j],
-               " - ",
-               matches_future_raw[j + 3],
-               ", ",
-               matches_future_raw[j + 1],
-               " at ",
-               matches_future_raw[j + 2],
-               "h")
-      # Prepare next iteration
-      j <- j + 4
-    } else {
-      # If match hour is not scheduled, do this  
-      matches_future[l] <- 
-        paste0(matches_future_raw[j],
-               " - ",
-               matches_future_raw[j + 2],
-               ", ",
-               matches_future_raw[j + 1],
-               " (not scheduled yet)")
-      # Prepare next iteration
-      j <- j + 3
-    }
+      # Test if match hour is already scheduled (but not today)
+      if(str_detect(matches_future_raw[j + 2], "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+        # if so, do this
+        matches_future[l] <- 
+          paste0(matches_future_raw[j],
+                 " - ",
+                 matches_future_raw[j + 3],
+                 ", ",
+                 matches_future_raw[j + 1],
+                 " at ",
+                 matches_future_raw[j + 2],
+                 "h")
+        # Prepare next iteration
+        j <- j + 4
+      } else {
+        # If match hour is not scheduled, do this  
+        matches_future[l] <- 
+          paste0(matches_future_raw[j],
+                 " - ",
+                 matches_future_raw[j + 2],
+                 ", ",
+                 matches_future_raw[j + 1],
+                 " (not scheduled yet)")
+        # Prepare next iteration
+        j <- j + 3
+      }
     
     # Prepare next iteration
     l <- l + 1
