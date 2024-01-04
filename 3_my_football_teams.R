@@ -79,6 +79,19 @@ my_football_teams <- function(my_team){
   j <- 1
   l <- 1
   while (!is.na(matches_future_raw[j])) {
+    # Test if match is today, because then order of hour and day are inversed
+    if(str_detect(matches_future_raw[j + 2], "heute")) {
+      # if so, do this
+      matches_future[l] <- 
+        paste0(matches_future_raw[j],
+               " - ",
+               matches_future_raw[j + 3],
+               ", today at ",
+               matches_future_raw[j + 1],
+               "h")
+      # Prepare next iteration
+      j <- j + 4
+    } else
     # Test if match hour is already scheduled
     if(str_detect(matches_future_raw[j + 2], "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")) {
       # if so, do this
@@ -91,6 +104,8 @@ my_football_teams <- function(my_team){
                " at ",
                matches_future_raw[j + 2],
                "h")
+      # Prepare next iteration
+      j <- j + 4
     } else {
       # if match hour is not scheduled, do this  
       matches_future[l] <- 
@@ -100,9 +115,11 @@ my_football_teams <- function(my_team){
                ", ",
                matches_future_raw[j + 1],
                " (not scheduled yet)")
+      # Prepare next iteration
+      j <- j + 3
     }
+    
     # Prepare next iteration
-    j <- j + 4
     l <- l + 1
   }
   
