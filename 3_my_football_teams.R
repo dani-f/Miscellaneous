@@ -68,7 +68,7 @@ my_football_teams <- function(my_team){
     return(
       cat("Last 10 Matches: ",
           results_past,
-          "\nNext 3 Matches: ",
+          "\nNext Matches: ",
           "No future matches scheduled - maybe it's summer break?",
           sep = "\n")
     )
@@ -145,7 +145,7 @@ my_football_teams <- function(my_team){
   # Output ----------------------------------------------------------------
   cat("Last 10 Matches: ",
       results_past,
-      "\nNext 3 Matches: ",
+      "\nNext Matches: ",
       matches_future,
       sep = "\n")
 }
