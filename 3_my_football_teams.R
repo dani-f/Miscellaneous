@@ -25,9 +25,17 @@ my_football_teams <- function(my_team){
     html_elements("table") %>% 
     extract(1)
   
-  table_future <- html_raw %>%
-    html_elements("table") %>% 
-    extract(2)
+  # Important: if no future matches are scheduled, like during summer break,
+  # Kicker does not create the table for future matches. In this case assign NA.
+  # Later we check for is.na(table_future) and if TRUE, we stop the function and return early.
+  tryCatch(
+    {
+      table_future <- html_raw %>%
+        html_elements("table") %>% 
+        extract(2)}, error = function(e) {
+          # Handle the error (can be a no-op)
+          table_future <- NA
+        })
   
   # Read alt attribute from image to obtain full team names
   teams_past <- table_past %>%
@@ -56,6 +64,17 @@ my_football_teams <- function(my_team){
     k <- k + 1
   }
   
+  # If is.na(table_future), stop this function and return early only the past matches.
+  if(is.na(table_future)){
+    return(
+      cat("Last 10 Matches: ",
+          results_past,
+          "\nNext 3 Matches: ",
+          "No future matches scheduled - maybe it's summer break?",
+          sep = "\n")
+    )
+  }
+  # Otherwise continue
   # Obtain future matches
   matches_future_raw <- table_future %>%
     html_elements(".kick__v100-gameCell__team__name, .kick__v100-scoreBoard__dateHolder") %>%
