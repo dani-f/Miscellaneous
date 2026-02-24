@@ -1,13 +1,13 @@
 ### Scraping Kicker for last and next matches of your favorite team
 
-# Load Packages -----------------------------------------------------------
+# Load packages -----------------------------------------------------------
 library(rvest)
 library(httr)
 library(tidyverse)
 library(magrittr)
 
 
-# Create Function ---------------------------------------------------------
+# Create function ---------------------------------------------------------
 my_football_teams <- function(my_team){
   
   # Pass URLs -------------------------------------------------------------
@@ -15,7 +15,14 @@ my_football_teams <- function(my_team){
   
   
   # Scrape html -----------------------------------------------------------
-  html_raw <- read_html(GET(url, config(ssl_verifypeer = 0L, ssl_verifyhost = 0L)))
+  html_raw <- read_html(
+    GET(url,
+        # Add headers to mimic real user request
+        add_headers(
+          "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36",
+          "Accept-Language" = "de-DE,de;q=0.9,en;q=0.8",
+          "Referer" = "https://www.kicker.de/"
+          )))
   
   
   # Manipulate data -------------------------------------------------------
