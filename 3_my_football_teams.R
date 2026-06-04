@@ -1,3 +1,13 @@
+####################################################
+### Update (June 2026):
+### This script is currently broken because kicker.de
+### now uses a Cloudflare JavaScript challenge that
+### prevents direct scraping and returns a 403 error.
+### When time permits, I plan to update the script and
+### switch to a browser-based scraping solution like 
+### chromote or RSelenium.
+####################################################
+
 ### Scraping Kicker for last and next matches of your favorite team
 
 # Load packages -----------------------------------------------------------
